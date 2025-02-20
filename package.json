@@ -4,7 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build"
@@ -15,10 +17,14 @@
   "description": "",
   "devDependencies": {
     "@types/node": "22.13.4",
+    "@vitest/coverage-istanbul": "3.0.6",
+    "@vitest/coverage-v8": "3.0.6",
     "prisma": "6.3.1",
     "tsup": "8.3.6",
     "tsx": "4.19.2",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.0.6"
   },
   "dependencies": {
     "@prisma/client": "6.3.1",

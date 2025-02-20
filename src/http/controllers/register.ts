@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { RegisterUseCase } from "@/use-cases/register";
 import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository";
-import { EmailAlreadyExistsError } from "./erros/email-already-exists-error";
+import { EmailAlreadyExistsError } from "../../use-cases/erros/email-already-exists-error";
 
 export async function register(request: FastifyRequest, reply: FastifyReply){
     const requestBodyParamsSchema = z.object({
