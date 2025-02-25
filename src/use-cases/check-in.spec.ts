@@ -5,6 +5,8 @@ import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-c
 import { randomUUID } from "node:crypto";
 import { GymsRepository } from "@/repositories/gyms-repository";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository";
+import { MaxNumberOfCheckInsError } from "./erros/max-number-of-check-ins-error";
+import { MaxDistanceError } from "./erros/max-distance-error";
 
 let checkInsRepository: CheckInsRepository
 let checkInUseCase: CheckInUseCase
@@ -63,7 +65,7 @@ describe('Check In Use Case', () => {
             gymId,
             latitude: 0,
             longitude: 0
-        })).rejects.toBeInstanceOf(Error)
+        })).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
     })
 
     it('should be able to check in in different days', async () => {
@@ -108,6 +110,6 @@ describe('Check In Use Case', () => {
                 latitude: -21.2099275,
                 longitude: -50.3942817
             })
-        ).rejects.toBeInstanceOf(Error)
+        ).rejects.toBeInstanceOf(MaxDistanceError)
     })
 })
