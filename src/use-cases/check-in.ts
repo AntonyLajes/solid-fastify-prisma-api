@@ -25,7 +25,6 @@ export class CheckInUseCase{
         const gym = await this.gymsRepository.findById(gymId)
 
         if(!gym) {
-            console.log("Entrou throw")
             throw new ResourceNotFound()
         }
 
