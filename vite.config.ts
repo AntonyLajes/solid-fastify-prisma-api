@@ -6,9 +6,24 @@ export default defineConfig({
         tsConfigPaths()
     ],
     test: {
-        coverage: {
-            provider: 'v8'
-        }
+        workspace: [
+            {
+                extends: true,
+                test: {
+                    environment: './prisma/vitest-environment-prisma/prisma-test-environment.ts',
+                    include: ['src/http/controllers/**/*.spec.ts'],
+                    name: 'e2e'
+                }   
+            },
+            {
+                extends: true,
+                test: {
+                    environment: 'node',
+                    include: ['src/use-cases/**/*.spec.ts'],
+                    name: 'unit',
+                }   
+            },
+        ],
     }
 })
 
