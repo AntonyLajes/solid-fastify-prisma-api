@@ -7,22 +7,22 @@ import { z } from "zod";
 export default async function create(request: FastifyRequest, reply: FastifyReply) {
     
     const createCheckInsParamsSchema = z.object({
-        id: z.string().uuid()
+        gymId: z.string().uuid()
     })
     
     const createCheckInBodySchema = z.object({
-        latitude: z.number().refine(value => Math.abs(value) <= 90),
-        longitude: z.number().refine(value => Math.abs(value) <= 180),
+        latitude: z.coerce.number().refine(value => Math.abs(value) <= 90),
+        longitude: z.coerce.number().refine(value => Math.abs(value) <= 180),
     })
     
-    const { id } = createCheckInsParamsSchema.parse(request.params)
+    const { gymId } = createCheckInsParamsSchema.parse(request.params)
     const { latitude, longitude } = createCheckInBodySchema.parse(request.body)
 
     try {
         const checkInUseCase = makeCheckInUseCase()
 
         const { checkIn } = await checkInUseCase.handler({
-            gymId: id,
+            gymId,
             userId: request.user.sub,
             latitude,
             longitude
