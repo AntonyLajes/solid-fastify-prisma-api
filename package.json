@@ -4,14 +4,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "vitest run --dir src/use-cases",
-    "test:watch": "vitest --dir src/use-cases",
+    "test": "vitest run --project unit",
+    "test:watch": "vitest --project unit",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:setup-prisma-environment": "npm link vitest-environment-prisma",
     "pretest:e2e": "run-s test:create-prisma-environment test:setup-prisma-environment",
-    "test:e2e": "vitest run --dir src/http",
+    "test:e2e": "vitest run --project e2e",
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build"
