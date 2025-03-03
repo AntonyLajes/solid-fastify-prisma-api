@@ -1,0 +1,1 @@
+Basics of Solid API using Fastify, Prisma, Vitest, Supertest & CI.
